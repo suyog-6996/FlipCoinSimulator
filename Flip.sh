@@ -3,6 +3,7 @@ echo "Welcome to Flip Coin Simulator";
 flip=0;
 isHeadWon=0;
 isTailWon=0;
+winDiff=0;
 
 while [[ $isHeadWon -lt 21 && $isTailWon -lt 21 ]]
 do
@@ -10,9 +11,9 @@ do
 
 	if [ $flip -eq $random ]
 	then
-		isHeadWon=$(( isHeadWon + 1 ));
+		isHeadWon=$(( $isHeadWon + 1 ));
 	else
-		isTailWon=$(( isTailWon + 1 ));
+		isTailWon=$(( $isTailWon + 1 ));
 	fi
 done
 
@@ -21,12 +22,26 @@ echo "Total Number Tail Won:" $isTailWon;
 
 if [[ $isHeadWon -gt $isTailWon ]]
 then
-	difference=$(($isHeadWon - $isTailWon ));
-	echo "Head Wins times more than Tail by" $difference;
-elif [[ $isHeadwon -eq $isTailWon ]]
+	echo "Head Wins";
+elif [[ $isHead -eq $isTailWon ]]
 then
 	echo "Tie between Head and Tail";
+	while [[ $winDiff -lt 2 ]]
+	do
+		 random=$(( RANDOM % 2 ));
+
+	   if [ $isHeadwon -eq $random ]
+   	then
+      	echo "Head";
+      	isHeadWon=$(( $isHeadWon + 1 ));
+			winDiff=$(( $winDiff + 1 ));
+   	else
+      	echo "Tail";
+      	isTailWon=$(( $isTailWon + 1 ));
+			winDiff=$(( $winDiff + 1 ));
+   	fi
+	done
+
 else
-	difference=$(($isTailWon - $isHeadWon ));
-	echo "Tail Wins times more than Head by" $difference;
+	echo "Tail Wins";
 fi
