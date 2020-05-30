@@ -1,4 +1,4 @@
-echo "Welcome to Flip Coin Simulation";
+echo "Welcome to Flip Coin Simulator";
 
 flip=0;
 isHeadWon=0;
